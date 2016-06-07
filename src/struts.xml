@@ -4,6 +4,20 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-   <constant name="structs.devMode" value="true"></constant>
+	<!-- 开发模式 -->
+   <constant name="structs.devMode" value="false"></constant>
    
+   <package name="shop" extends="struts-default" namespace="/">
+   
+   		<!-- 配置首页访问的Action -->
+		<action name="index" class="indexAction">
+			<result name="index">/WEB-INF/jsp/index.jsp</result>
+		</action>
+		
+		<!-- 配置用户模块的Action -->
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="registPage">/WEB-INF/jsp/regist.jsp</result>
+		</action>
+		
+   	</package>
 </struts>
