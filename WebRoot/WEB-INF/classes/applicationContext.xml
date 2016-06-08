@@ -21,9 +21,10 @@
 		<property name="user" value="${jdbc.user}" />
 		<property name="password" value="${jdbc.password}" />
 	</bean>
-	
+
 	<!-- 配置Hibernate的相关信息 -->
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<!-- 注入连接池 -->
 		<property name="dataSource" ref="dataSource"></property>
 		<!-- 配置Hibernate其他属性 -->
@@ -36,27 +37,37 @@
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
-		
+
 		<!-- 配置Hibernate的映射文件 -->
-		
+
 
 	</bean>
-	
-	
+
+
 	<!-- 事务管理 -->
 	<!-- 事物管理器 -->
-	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	
+
 	<!-- 开启注解事务 -->
-	<tx:annotation-driven transaction-manager="transactionManager"/>
-	
-	<!-- Action配置 -->
-	
-	
-	<!-- Service的配置 -->
-	
-	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- Action配置 ===========================-->
+	<!-- 首页访问的action -->
+	<bean id="indexAction" class="cn.edu.zucc.shop.index.action.IndexAction"
+		scope="prototype">
+	</bean>
+
+	<!-- 用户模块的action -->
+	<bean id="userAction" class="cn.edu.zucc.shop.user.action.UserAction"
+		scope="prototype">
+	</bean>
+
+
+	<!-- Service的配置 ========================-->
+
+
 	<!-- Dao的配置 -->
 </beans>
