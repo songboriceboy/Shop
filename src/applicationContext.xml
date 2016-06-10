@@ -39,7 +39,11 @@
 		</property>
 
 		<!-- 配置Hibernate的映射文件 -->
-
+		<property name="mappingResources">
+			<list>
+				<value>cn/edu/zucc/shop/user/vo/User.hbm.xml</value>
+			</list>
+		</property>
 
 	</bean>
 
@@ -54,7 +58,7 @@
 	<!-- 开启注解事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
-	<!-- Action配置 ===========================-->
+	<!-- Action配置 =========================== -->
 	<!-- 首页访问的action -->
 	<bean id="indexAction" class="cn.edu.zucc.shop.index.action.IndexAction"
 		scope="prototype">
@@ -63,11 +67,19 @@
 	<!-- 用户模块的action -->
 	<bean id="userAction" class="cn.edu.zucc.shop.user.action.UserAction"
 		scope="prototype">
+		<!-- 注入Service -->
+		<property name="userService" ref="userService"></property>
 	</bean>
 
 
-	<!-- Service的配置 ========================-->
+	<!-- Service的配置 ======================== -->
+	<bean id="userService" class="cn.edu.zucc.shop.user.service.UserService">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
 
+	<!-- Dao的配置  ===========================-->
+	<bean id="userDao" class="cn.edu.zucc.shop.user.dao.UserDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
 
-	<!-- Dao的配置 -->
 </beans>

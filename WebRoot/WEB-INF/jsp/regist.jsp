@@ -52,6 +52,47 @@
 		}
 	}
 	
+	
+	function checkUsername() {
+		 //获得文本框的值
+		 var username = document.getElementById("username").value;
+		
+		 //创建异步交互对象
+		 var xhr = createXmlHttp();
+		 //设置监听
+		 xhr.onreadystatechange = function(){
+		 	if(xhr.readyState == 4){
+		 		if(xhr.status == 200) {
+		 			document.getElementById("usernamespan").innerHTML = xhr.responseText;
+		 		}
+		 	}
+		 }
+		 //打开连接,向findByName这个方法中提交username
+		 xhr.open("GET","${pageContext.request.contextPath}/user_findByName.action?time="+new Date().getTime()+"&username="+username,true);
+		 //发送
+		 xhr.send(null);
+	
+	}
+	
+	function createXmlHttp(){
+		var xmlHttp;
+		try{
+			xmlHttp = new XMLHttpRequest();
+		}
+		catch(e){
+			try{
+				xmlHttp = new ActiveXObject("Msxm12.XMLHTTP");
+			}
+			catch(e){
+				try{
+					xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				catch(e){}
+			}
+		}
+		
+		return xmlHttp;
+	}
 </script>
 
 </head>
@@ -85,7 +126,7 @@
 									<span class="requiredField">*</span>用户名:
 								</th>
 								<td>
-									<input type="text" id="username" name="username" class="text" maxlength="20" onblur="">
+									<input type="text" id="username" name="username" class="text" maxlength="20" onblur="checkUsername()">
 									<span id="usernamespan"></span>
 								</td>
 							</tr>
