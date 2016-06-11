@@ -3,7 +3,7 @@ package cn.edu.zucc.shop.utils;
 import java.util.UUID;
 
 /*
- * Éú³ÉËæ»ú×Ö·û´®
+ * Ã‰ÃºÂ³Ã‰Ã‹Ã¦Â»ÃºÃ—Ã–Â·Ã»Â´Â®
  */
 public class UUIDUtils {
 	
