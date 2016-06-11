@@ -68,13 +68,13 @@
 	<bean id="userAction" class="cn.edu.zucc.shop.user.action.UserAction"
 		scope="prototype">
 		<!-- 注入Service -->
-		<property name="userService" ref="userService"></property>
+		<property name="userService" ref="userService"/>
 	</bean>
 
 
 	<!-- Service的配置 ======================== -->
 	<bean id="userService" class="cn.edu.zucc.shop.user.service.UserService">
-		<property name="userDao" ref="userDao"></property>
+		<property name="userDao" ref="userDao"/>
 	</bean>
 
 	<!-- Dao的配置  ===========================-->

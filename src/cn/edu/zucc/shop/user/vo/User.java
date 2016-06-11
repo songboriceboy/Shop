@@ -12,7 +12,7 @@ public class User {
 	private String email;
 	private String phone;
 	private String addr;
-	private Integer statre;
+	private Integer state;
 	private String code;
 
 	public Integer getUid() {
@@ -71,20 +71,20 @@ public class User {
 		this.addr = addr;
 	}
 
-	public Integer getStatre() {
-		return statre;
-	}
-
-	public void setStatre(Integer statre) {
-		this.statre = statre;
-	}
-
 	public String getCode() {
 		return code;
 	}
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
 	}
 
 }

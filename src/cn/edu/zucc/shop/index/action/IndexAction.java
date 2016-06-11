@@ -15,4 +15,8 @@ public class IndexAction extends ActionSupport {
 
 		return "index";
 	}
+	
+	
+	
+	
 }

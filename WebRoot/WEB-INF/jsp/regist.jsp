@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -118,8 +119,9 @@
 				<div class="main clearfix">
 					<div class="title">
 						<strong>会员注册</strong>USER REGISTER
+						
 					</div>
-					<form id="registerForm"  method="post" novalidate="novalidate" onsubmit="return checkForm();">
+					<form id="registerForm" action="${pageContext.request.contextPath}/user_regist.action" method="post" novalidate="novalidate" onsubmit="return checkForm();">
 						<table>
 							<tbody><tr>
 								<th>
@@ -128,6 +130,7 @@
 								<td>
 									<input type="text" id="username" name="username" class="text" maxlength="20" onblur="checkUsername()">
 									<span id="usernamespan"></span>
+									<span><s:fielderror fieldName="username"/></span>
 								</td>
 							</tr>
 							<tr>

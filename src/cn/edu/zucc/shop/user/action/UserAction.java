@@ -40,12 +40,21 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	}
 
 	/*
+	 * 跳转到用户登陆页面的方法
+	 */
+
+	public String loginPage() {
+		
+		return "loginPage";
+	}
+	
+	/*
 	 * ajax进行异步校验用户名的方法
 	 */
 	public String findByName() throws IOException {
 		// 调用Service进行查询:
 		User existUser = userService.findByUsername(user.getUsername());
-		// 获得response对象,项页面输出:
+		// 获得response对象,向页面输出:
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("text/html;charset=UTF-8");
 		// 判断
@@ -58,5 +67,17 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		}
 		return NONE;
 	}
+
+	/*
+	 * 用户注册的方法
+	 */
+	public String regist() {
+
+		userService.save(user);
+
+		return NONE;
+	}
+
+	
 
 }

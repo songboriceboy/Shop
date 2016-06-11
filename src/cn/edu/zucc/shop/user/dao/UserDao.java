@@ -22,4 +22,9 @@ public class UserDao extends HibernateDaoSupport {
 		return null;
 	}
 
+	public void save(User user) {
+		// TODO Auto-generated method stub
+		this.getHibernateTemplate().save(user);
+	}
+
 }

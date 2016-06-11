@@ -7,16 +7,15 @@
  <hibernate-mapping>
  	<class name="cn.edu.zucc.shop.user.vo.User" table="user">
  		<id name="uid">
- 			<generator class="native"></generator>
- 		</id>
- 		
- 		<properties name="username"/>
- 		<properties name="password"/>
- 		<properties name="name"/>
- 		<properties name="eamil"/>
- 		<properties name="phone"/>
- 		<properties name="addr"/>
- 		<properties name="state"/>
- 		<properties name="code"/>
+			<generator class="native"/>
+		</id>
+		<property name="username"/>
+		<property name="password"/>
+		<property name="name"/>
+		<property name="email"/>
+		<property name="phone"/>
+		<property name="addr"/>
+		<property name="state"/>
+		<property name="code"/>
  	</class>
  </hibernate-mapping>
