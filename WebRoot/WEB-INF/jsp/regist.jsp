@@ -94,6 +94,13 @@
 		
 		return xmlHttp;
 	}
+	
+	function change(){
+		var img1 = document.getElementById("checkImg");
+		img1.src = "${pageContext.request.contextPath}/checkImg.action?"+new Date().getTime();
+	}
+	
+	
 </script>
 
 </head>
@@ -192,7 +199,10 @@
 									</th>
 									<td>
 										<span class="fieldSet">
-											<input type="text" id="captcha" name="captcha" class="text captcha" maxlength="4" autocomplete="off"><img id="captchaImage" class="captchaImage" src="${pageContext.request.contextPath}/image/captcha.jhtml" title="点击更换验证码">
+											<input type="text" id="checkcode" name="checkcode" class="text captcha" maxlength="4" autocomplete="off"><img id="checkImg" class="captchaImage" onclick="change()" src="${pageContext.request.contextPath}/checkImg.action" title="点击更换验证码">
+										</span>
+										<span>
+										<s:actionerror />
 										</span>
 									</td>
 								</tr>
@@ -243,7 +253,7 @@
 								<dt>已经拥有账号了？</dt>
 								<dd>
 									立即登录即可体验在线购物！
-									<a href="./会员登录.htm">立即登录</a>
+									<a href="${pageContext.request.contextPath}/user_loginPage.action ">立即登录</a>
 								</dd>
 							</dl>
 						</div>

@@ -24,6 +24,13 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		return user;
 	}
 
+	// 接收验证码
+	private String checkcode;
+
+	public void setCheckcode(String checkcode) {
+		this.checkcode = checkcode;
+	}
+
 	// 注入userService
 	private UserService userService;
 
@@ -44,10 +51,10 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	 */
 
 	public String loginPage() {
-		
+
 		return "loginPage";
 	}
-	
+
 	/*
 	 * ajax进行异步校验用户名的方法
 	 */
@@ -73,11 +80,51 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	 */
 	public String regist() {
 
+		// 判断验证码是否正确
+		// 先要从session中获取验证码的值
+		String checkcode1 = (String) ServletActionContext.getRequest()
+				.getSession().getAttribute("checkcode");
+		//如果输入的验证码和session中的不一致，就添加错误信息
+		if(!checkcode.equalsIgnoreCase(checkcode1)){
+			this.addActionError("验证码输入错误!");
+			return "checkcodeFail";
+		}
 		userService.save(user);
-
-		return NONE;
+		return "msg";
 	}
 
-	
+	/*
+	 * 用户登陆的方法
+	 */
+
+	public String login() {
+
+		User existUser = userService.login(user);
+		// 判断
+		if (existUser == null) {
+			// 登陆失败
+			this.addActionError("登陆失败，用户名或密码错误");
+			return LOGIN;
+		} else {
+			// 登陆成功
+			// 将用户的信息存到session中
+			ServletActionContext.getRequest().getSession()
+					.setAttribute("existUser", existUser);
+			// 页面跳转
+			return "loginSuccess";
+		}
+
+	}
+
+	/*
+	 * 用户退出的方法
+	 */
+
+	public String quit() {
+
+		// 销毁session
+		ServletActionContext.getRequest().getSession().invalidate();
+		return "quit";
+	}
 
 }

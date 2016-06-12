@@ -34,4 +34,12 @@ public class UserService {
 		
 		userDao.save(user);
 	}
+
+	//µÇÂ½Ê±
+	public User login(User user) {
+		// TODO Auto-generated method stub
+		return userDao.login(user);
+	}
+	
+	
 }
