@@ -201,9 +201,9 @@
 										<span class="fieldSet">
 											<input type="text" id="checkcode" name="checkcode" class="text captcha" maxlength="4" autocomplete="off"><img id="checkImg" class="captchaImage" onclick="change()" src="${pageContext.request.contextPath}/checkImg.action" title="点击更换验证码">
 										</span>
-										<span>
+										<span><font color="red">
 										<s:actionerror />
-										</span>
+										</font></span>
 									</td>
 								</tr>
 							<tr>
