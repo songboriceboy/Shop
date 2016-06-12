@@ -1,0 +1,27 @@
+package cn.edu.zucc.shop.category.service;
+
+import java.util.List;
+
+import cn.edu.zucc.shop.category.dao.CategoryDao;
+import cn.edu.zucc.shop.category.vo.Category;
+
+/*
+ * 一级分类业务层的对象
+ */
+public class CategoryService {
+
+	// 注入dao
+	private CategoryDao categoryDao;
+
+	public void setCategoryDao(CategoryDao categoryDao) {
+		this.categoryDao = categoryDao;
+	}
+
+	//业务层查询所有一级分类的方法的实现
+	public List<Category> findAll() {
+		// TODO Auto-generated method stub
+		
+		return categoryDao.findAll();
+	}
+
+}

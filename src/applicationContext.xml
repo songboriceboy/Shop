@@ -42,6 +42,7 @@
 		<property name="mappingResources">
 			<list>
 				<value>cn/edu/zucc/shop/user/vo/User.hbm.xml</value>
+				<value>cn/edu/zucc/shop/category/vo/Category.hbm.xml</value>
 			</list>
 		</property>
 
@@ -62,6 +63,7 @@
 	<!-- 首页访问的action -->
 	<bean id="indexAction" class="cn.edu.zucc.shop.index.action.IndexAction"
 		scope="prototype">
+		<property name="categoryService" ref="categoryService"></property>
 	</bean>
 	
 	<!-- 验证码的action -->
@@ -82,9 +84,17 @@
 		<property name="userDao" ref="userDao"/>
 	</bean>
 
+	<bean id="categoryService" class="cn.edu.zucc.shop.category.service.CategoryService">
+		<property name="categoryDao" ref="categoryDao"/>
+	</bean>
+		
+
 	<!-- Dao的配置  ===========================-->
 	<bean id="userDao" class="cn.edu.zucc.shop.user.dao.UserDao">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 
+	<bean id="categoryDao" class="cn.edu.zucc.shop.category.dao.CategoryDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
 </beans>
