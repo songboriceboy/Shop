@@ -2,6 +2,8 @@ package cn.edu.zucc.shop.product.vo;
 
 import java.util.Date;
 
+import cn.edu.zucc.shop.categorysecond.vo.CategorySecond;
+
 public class Product {
 	private Integer pid;
 	private String pname;
@@ -11,6 +13,16 @@ public class Product {
 	private String pdesc;
 	private Integer is_hot;
 	private Date pdate;
+	// 二级分类的对象，本来应该是外键，但是不能存
+	private CategorySecond categorySecond;
+
+	public CategorySecond getCategorySecond() {
+		return categorySecond;
+	}
+
+	public void setCategorySecond(CategorySecond categorySecond) {
+		this.categorySecond = categorySecond;
+	}
 
 	public Integer getPid() {
 		return pid;

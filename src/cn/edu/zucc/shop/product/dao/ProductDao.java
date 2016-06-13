@@ -1,13 +1,18 @@
 package cn.edu.zucc.shop.product.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.edu.zucc.shop.product.vo.Product;
+import cn.edu.zucc.shop.utils.PageHibernateCallback;
 
 /*
  * 商品的持久层代码
@@ -50,6 +55,28 @@ public class ProductDao extends HibernateDaoSupport{
 		// TODO Auto-generated method stub
 		
 		return this.getHibernateTemplate().get(Product.class, pid);
+	}
+
+	//根据分类的id来查询商品的个数
+	public int findCountCid(Integer cid) {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from Product p where p.categorySecond.category.cid = ?";
+		List<Long> list = this.getHibernateTemplate().find(hql,cid);
+		if(list != null && list.size() > 0){
+			return list.get(0).intValue();
+		}
+		return 0;
+	}
+	//根据分类id来查询商品的集合
+	public List<Product> findByPageCid(Integer cid, int begin, int limit) {
+		// TODO Auto-generated method stub
+		String hql = "select p from Product p join p.categorySecond cs join cs.category c where c.cid = ?";
+		//分页
+		List<Product> list = this.getHibernateTemplate().execute(new PageHibernateCallback<Product>(hql, new Object[]{cid}, begin, limit));
+		if(list != null && list.size() > 0) {
+			return list;
+		}
+		return null;
 	}
 	
 }

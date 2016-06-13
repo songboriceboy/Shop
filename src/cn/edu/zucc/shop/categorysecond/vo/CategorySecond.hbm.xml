@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+	<class name="cn.edu.zucc.shop.categorysecond.vo.CategorySecond"
+		table="categorysecond">
+		<id name="csid">
+			<!-- 主键生成策略 -->
+			<generator class="native" />
+		</id>
+		<property name="csname" />
+		<!-- 
+		<many-to-one name="category" class="cn.edu.zucc.shop.category.vo.Category" column="cid" />
+		 -->
+		<!-- 配置二级分类的集合 ,默认的是延迟加载,但是加载的顺序，每次重开服务器都不一样
+		<set order-by="csid" name="categorySeconds" lazy="false">
+			<key column="cid"/>
+			<one-to-many class="cn.edu.zucc.shop.categorysecond.vo.CategorySecond"/>
+		</set>
+		-->
+		<!-- 二级分类与一级分类的关联 -->
+		<many-to-one name="category" lazy="false" class="cn.edu.zucc.shop.category.vo.Category" column="cid"></many-to-one>
+	
+		<!-- 二级分类与商品的关联 -->
+		<set name="products">
+			<key column="csid"/>
+			<one-to-many class="cn.edu.zucc.shop.product.vo.Product"/>
+		</set>
+		
+	</class>
+</hibernate-mapping>
