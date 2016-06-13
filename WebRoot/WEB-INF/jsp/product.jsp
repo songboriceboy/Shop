@@ -12,6 +12,15 @@
 	rel="stylesheet" type="text/css">
 
 
+<script>
+
+function addToCart(){
+	document.getElementById("cartForm").submit();
+
+}
+
+</script>
+
 </head>
 <body>
 
@@ -120,20 +129,23 @@
 					</dd>
 				</dl>
 			</div>
+		<form action="${pageContext.request.contextPath}/cart_addCart.action" method="post" id="cartForm">
+			<input type="hidden" name="pid" value="<s:property value="model.pid"/>"/>
 			<div class="action">
 
 				<dl class="quantity">
 					<dt>购买数量:</dt>
 					<dd>
-						<input id="quantity" name="quantity" value="1" maxlength="4"
+						<input id="count" name="count" value="1" maxlength="4"
 							onpaste="return false;" type="text">
 					</dd>
 					<dd>件</dd>
 				</dl>
 				<div class="buy">
-					<input id="addCart" class="addCart" value="加入购物车" type="button">
+					<input id="addCart" class="addCart" value="加入购物车" type="button" onclick="addToCart()"/>
 				</div>
 			</div>
+		</form>
 			<div id="bar" class="bar">
 				<ul>
 					<li id="introductionTab"><a href="#introduction">商品介绍</a></li>
@@ -176,7 +188,7 @@
 			</ul>
 		</div>
 		<div class="span24">
-			<div class="copyright">Copyright © 2005-2015 网上商城 版权所有</div>
+			<div class="copyright">Copyright © zeewane</div>
 		</div>
 	</div>
 </body>
