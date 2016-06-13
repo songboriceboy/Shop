@@ -43,6 +43,7 @@
 			<list>
 				<value>cn/edu/zucc/shop/user/vo/User.hbm.xml</value>
 				<value>cn/edu/zucc/shop/category/vo/Category.hbm.xml</value>
+				<value>cn/edu/zucc/shop/product/vo/Product.hbm.xml</value>
 			</list>
 		</property>
 
@@ -64,37 +65,52 @@
 	<bean id="indexAction" class="cn.edu.zucc.shop.index.action.IndexAction"
 		scope="prototype">
 		<property name="categoryService" ref="categoryService"></property>
+		<property name="productService" ref="productService"></property>
 	</bean>
-	
+
 	<!-- 验证码的action -->
-	<bean id="checkImgAction" class="cn.edu.zucc.shop.user.action.CheckImgAction" scope="prototype">
-	
+	<bean id="checkImgAction" class="cn.edu.zucc.shop.user.action.CheckImgAction"
+		scope="prototype">
+
 	</bean>
-	
+
 	<!-- 用户模块的action -->
 	<bean id="userAction" class="cn.edu.zucc.shop.user.action.UserAction"
 		scope="prototype">
 		<!-- 注入Service -->
-		<property name="userService" ref="userService"/>
+		<property name="userService" ref="userService" />
 	</bean>
 
+	<!-- 商品模块的action -->
+	<bean id="productAction" class="cn.edu.zucc.shop.product.action.ProductAction"
+		scope="prototype">
+		<!-- 注入Service -->
+		<property name="productService" ref="productService" />
+	</bean>
 
 	<!-- Service的配置 ======================== -->
 	<bean id="userService" class="cn.edu.zucc.shop.user.service.UserService">
-		<property name="userDao" ref="userDao"/>
+		<property name="userDao" ref="userDao" />
 	</bean>
 
 	<bean id="categoryService" class="cn.edu.zucc.shop.category.service.CategoryService">
-		<property name="categoryDao" ref="categoryDao"/>
+		<property name="categoryDao" ref="categoryDao" />
 	</bean>
-		
 
-	<!-- Dao的配置  ===========================-->
+	<bean id="productService" class="cn.edu.zucc.shop.product.service.ProductService">
+		<property name="productDao" ref="productDao" />
+	</bean>
+
+	<!-- Dao的配置 =========================== -->
 	<bean id="userDao" class="cn.edu.zucc.shop.user.dao.UserDao">
-		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="categoryDao" class="cn.edu.zucc.shop.category.dao.CategoryDao">
-		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="productDao" class="cn.edu.zucc.shop.product.dao.ProductDao">
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 </beans>

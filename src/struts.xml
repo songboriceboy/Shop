@@ -5,19 +5,19 @@
 
 <struts>
 	<!-- 开发模式 -->
-   <constant name="structs.devMode" value="false"></constant>
-   
-   <package name="shop" extends="struts-default" namespace="/">
-   
-   		<global-results>
-   			<result name="msg">/WEB-INF/jsp/msg.jsp</result>
-   		</global-results>
-   
-   		<!-- 配置首页访问的Action -->
+	<constant name="structs.devMode" value="false"></constant>
+
+	<package name="shop" extends="struts-default" namespace="/">
+
+		<global-results>
+			<result name="msg">/WEB-INF/jsp/msg.jsp</result>
+		</global-results>
+
+		<!-- 配置首页访问的Action -->
 		<action name="index" class="indexAction">
 			<result name="index">/WEB-INF/jsp/index.jsp</result>
 		</action>
-		
+
 		<!-- 配置用户模块的Action -->
 		<action name="user_*" class="userAction" method="{1}">
 			<result name="registPage">/WEB-INF/jsp/regist.jsp</result>
@@ -29,11 +29,16 @@
 			<result name="loginSuccess" type="redirectAction">index</result>
 			<result name="quit" type="redirectAction">index</result>
 		</action>
-		
+
 		<!-- 验证码的action -->
 		<action name="checkImg" class="checkImgAction">
-			
 		</action>
-		
-   	</package>
+
+
+		<!-- 商品模块的action -->
+		<action name="product_*" class="productAction" method="{1}">
+			<result name="findByPid">/WEB-INF/jsp/product.jsp</result>
+		</action>
+
+	</package>
 </struts>
