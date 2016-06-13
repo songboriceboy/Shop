@@ -64,5 +64,33 @@ public class ProductService {
 		return pageBean;
 	}
 
+	//根据二级分类来查询
+	public PageBean<Product> findByPageCsid(Integer csid, int page) {
+		// TODO Auto-generated method stub
+		PageBean<Product> pageBean = new PageBean<Product>();
+		pageBean.setPage(page);
+		//设置每页显示的个数
+		int limit = 8;
+		pageBean.setLimit(limit);
+		//设置总的记录数
+		int totalCount = 0;
+		totalCount = productDao.findCountCsid(csid);
+		pageBean.setTotalCount(totalCount);
+		//设置总页数
+		int totalPage = 0;
+		if(totalCount % limit == 0){
+			totalPage = totalCount / limit;
+		} else {
+			totalPage = totalCount / limit + 1;
+		}
+		pageBean.setTotalPage(totalPage);
+		
+		//每页显示数据的集合
+		int begin = (page -1 ) * limit;
+		List<Product> list = productDao.findByPageCsid(csid,begin,limit);
+		pageBean.setList(list);
+		return pageBean;
+	}
+
 
 }

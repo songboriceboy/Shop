@@ -1,1 +1,3 @@
 Error creating bean with name 'productService' defined in class path resource [applicationContext.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'productDao' of bean class [cn.edu.zucc.shop.product.service.ProductService]: Bean property 'productDao' is not writable or has an invalid setter method. Did you mean 'productdao'?
+
+ProductService里的set方法也错了，这个的Dao写成了dao
