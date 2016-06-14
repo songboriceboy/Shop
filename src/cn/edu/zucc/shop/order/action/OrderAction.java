@@ -50,16 +50,10 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 				.getAttribute("cart");
 
 		if (cart == null) {
-			this.addActionMessage("亲!您还没有购物!");
+			this.addActionError("亲!您还没有购物!先去逛逛吧~~");
 			return "msg";
 		}
 
-		order.setTotal(cart.getTotal());
-		// 设置订单状态
-		order.setState(1); // 1:未付款. 2:已付款
-		// 设置订单的时间，这个有问题，插入的时候显示错误，暂时改为null
-		// order.setOrdertime(new Date());
-		order.setOrdertime(null);
 		// 设置订单关联的客户:
 		User existUser = (User) ServletActionContext.getRequest().getSession()
 				.getAttribute("existUser");
@@ -68,6 +62,18 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 			return "login";
 		}
 		order.setUser(existUser);
+		
+		order.setTotal(cart.getTotal());
+		// 设置订单状态
+		order.setState(1); // 1:未付款. 2:已付款
+		// 设置订单的时间，这个有问题，插入的时候显示错误，暂时改为null
+		// order.setOrdertime(new Date());
+		order.setOrdertime(null);
+		
+		order.setAddr(existUser.getAddr());
+		order.setPhone(existUser.getPhone());
+		order.setName(existUser.getName());
+
 		// 设置订单项集合:
 		for (CartItem cartItem : cart.getCartItems()) {
 			// 订单项的信息从购物项获得的.
@@ -90,27 +96,28 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 	}
 
 	// 我的订单查询
-	public String findByUid(){
-		
-		User existUser = (User) ServletActionContext.getRequest().getSession().getAttribute("existUser");
-		
-		PageBean<Order> pageBean = orderService.findByPageUid(existUser.getUid(),page);
-		
-		//将分页的数据显示到页面上，存到值栈里
+	public String findByUid() {
+
+		User existUser = (User) ServletActionContext.getRequest().getSession()
+				.getAttribute("existUser");
+
+		PageBean<Order> pageBean = orderService.findByPageUid(
+				existUser.getUid(), page);
+
+		// 将分页的数据显示到页面上，存到值栈里
 		ActionContext.getContext().getValueStack().set("pageBean", pageBean);
 		return "findByUidSuccess";
 	}
-	
-	
-	//根据订单号来查询订单
-	public String findByOid(){
+
+	// 根据订单号来查询订单
+	public String findByOid() {
 		order = orderService.findByOid(order.getOid());
-		
+
 		return "findByOidSuccess";
 	}
-	
-	//假装完成付款
-	public String payOrder(){
+
+	// 假装完成付款
+	public String payOrder() {
 		Order currOrder = orderService.findByOid(order.getOid());
 		currOrder.setState(2);
 		orderService.update(currOrder);

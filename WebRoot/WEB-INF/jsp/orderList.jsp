@@ -22,7 +22,7 @@
 		<div class="span5">
 			<div class="logo">
 				<a href="./网上商城/index.htm"> <img
-					src="${pageContext.request.contextPath}/image/r___________renleipic_01/logo.gif"
+					src="${pageContext.request.contextPath}/image/r___________renleipic_01/qzw.gif"
 					alt="传智播客" /> </a>
 			</div>
 		</div>
@@ -64,7 +64,12 @@
 								<s:if test="#order.state == 2">
 									已付款
 								</s:if>
-								
+								<s:if test="#order.state == 3">
+									<a href="${ pageContext.request.contextPath }/order_updateState.action?oid=<s:property value="#order.oid" />">确认收货</a>
+								</s:if>
+								<s:if test="#order.state == 4">
+									交易成功
+								</s:if>
 							</font>
 							</th>
 						</tr>

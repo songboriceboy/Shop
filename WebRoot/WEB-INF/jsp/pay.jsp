@@ -18,7 +18,7 @@
 	<div class="span5">
 		<div class="logo">
 			<a href="http://localhost:8080/mango/">
-				<img src="${pageContext.request.contextPath}/image/r___________renleipic_01/logo.gif" alt="传智播客">
+				<img src="${pageContext.request.contextPath}/image/r___________renleipic_01/qzw.gif" alt="传智播客">
 			</a>
 		</div>
 	</div>
@@ -34,7 +34,7 @@
 			<div class="span24" style="height:250px">
 			<div style="height:100px"></div>
 			<div class="step step1" style="text-align:center">
-				<span><h2>完成付款！我们会尽快给您安排发货！<h2/></span>
+				<span><h1>付款完成！我们会尽快给您安排发货！<h1/></span>
 			</div>
 			</div>
 		
