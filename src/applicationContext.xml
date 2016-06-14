@@ -47,6 +47,8 @@
 				<value>cn/edu/zucc/shop/categorysecond/vo/CategorySecond.hbm.xml</value>
 				<value>cn/edu/zucc/shop/order/vo/Order.hbm.xml</value>
 				<value>cn/edu/zucc/shop/order/vo/OrderItem.hbm.xml</value>
+				<value>cn/edu/zucc/shop/adminuser/vo/AdminUser.hbm.xml</value>
+				
 			</list>
 		</property>
 
@@ -104,7 +106,21 @@
 		<!-- 注入Service -->
 		<property name="orderService" ref="orderService" />
 	</bean>
-
+	
+	<!-- 后台登陆的action -->
+	<bean id="adminUserAction" class="cn.edu.zucc.shop.adminuser.action.AdminUserAction"
+		scope="prototype">
+		<!-- 注入Service -->
+		<property name="adminUserService" ref="adminUserService" />
+	</bean>
+	
+	<!-- 后台一级分类管理的action -->
+	<bean id="adminCategoryAction" class="cn.edu.zucc.shop.category.adminaction.AdminCategoryAction"
+		scope="prototype">
+		<!-- 注入Service -->
+		<property name="categoryService" ref="categoryService" />
+	</bean>
+	
 	<!-- Service的配置 ======================== -->
 	<bean id="userService" class="cn.edu.zucc.shop.user.service.UserService">
 		<property name="userDao" ref="userDao" />
@@ -120,6 +136,10 @@
 
 	<bean id="orderService" class="cn.edu.zucc.shop.order.service.OrderService">
 		<property name="orderDao" ref="orderDao" />
+	</bean>
+	
+	<bean id="adminUserService" class="cn.edu.zucc.shop.adminuser.service.AdminUserService">
+		<property name="adminUserDao" ref="adminUserDao" />
 	</bean>
 
 	<!-- Dao的配置 =========================== -->
@@ -138,4 +158,11 @@
 	<bean id="orderDao" class="cn.edu.zucc.shop.order.dao.OrderDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<!-- 后台登陆的dao -->
+	<bean id="adminUserDao" class="cn.edu.zucc.shop.adminuser.dao.AdminUserDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	
 </beans>

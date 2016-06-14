@@ -27,4 +27,19 @@ public class CategoryService {
 		return categoryDao.findAll();
 	}
 
+	public void save(Category category) {
+		// TODO Auto-generated method stub
+		categoryDao.save(category);
+	}
+
+	public Category findByCid(Integer cid) {
+		// TODO Auto-generated method stub
+		return categoryDao.findByCid(cid);
+	}
+
+	public void delete(Category category) {
+		// TODO Auto-generated method stub
+		categoryDao.delete(category);
+	}
+
 }
