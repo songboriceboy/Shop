@@ -30,68 +30,15 @@
 <%@ include file="menu.jsp" %>
 	
 </div>	<div class="container cart">
-	<s:if test="#session.cart.cartItems.size() != 0">
-		<div class="span24">
-			<div class="step step1">
-				购物车信息
-			</div>
-				<table>
-					<tbody><tr>
-						<th>图片</th>
-						<th>商品</th>
-						<th>价格</th>
-						<th>数量</th>
-						<th>小计</th>
-						<th>操作</th>
-					</tr>
-						<s:iterator var="cartItem" value="#session.cart.cartItems">
-						<tr>
-							<td width="60">
-								<img src="${pageContext.request.contextPath}/<s:property value="#cartItem.product.image"/>">
-							</td>
-							<td>
-								<a target="_blank"><s:property value="#cartItem.product.pname"/></a>
-							</td>
-							<td>
-								￥<s:property value="#cartItem.product.shop_price"/>
-							</td>
-							<td class="quantity" width="60">
-								<s:property value="#cartItem.count"/>
-							</td>
-							<td width="140">
-								<span class="subtotal">￥<s:property value="#cartItem.subtotal"/></span>
-							</td>
-							<td>
-								<a href="${ pageContext.request.contextPath }/cart_removeCart.action?pid=<s:property value="#cartItem.product.pid"/>" class="delete">删除</a>
-							</td>
-						</tr>
-						</s:iterator>
-				</tbody></table>
-				<dl id="giftItems" class="hidden" style="display: none;">
-				</dl>
-				<div class="total">
-					<em id="promotion"></em>
-							<em>
-								登录后确认是否享有优惠
-							</em>
-					赠送积分: <em id="effectivePoint"><s:property value="#session.cart.total"/></em>
-					商品金额: <strong id="effectivePrice">￥<s:property value="#session.cart.total"/>元</strong>
-				</div>
-				<div class="bottom">
-					<a href="${ pageContext.request.contextPath }/cart_clearCart.action" id="clear" class="clear">清空购物车</a>
-					<a href="${ pageContext.request.contextPath }/order_save.action" id="submit" class="submit">提交订单</a>
-				</div>
-		</div>
-		</s:if>
-		<s:else>
+	
 			<div class="span24" style="height:250px">
 			<div style="height:100px"></div>
 			<div class="step step1" style="text-align:center">
-				<span><h2>亲！您的购物车空空如也！快点去填满它吧！！<h2/></span>
+				<span><h2>完成付款！我们会尽快给您安排发货！<h2/></span>
 			</div>
 			</div>
 		
-		</s:else>
+		
 	</div>
 <div class="container footer">
 	<div class="span24">

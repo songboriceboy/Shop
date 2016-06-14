@@ -45,6 +45,8 @@
 				<value>cn/edu/zucc/shop/category/vo/Category.hbm.xml</value>
 				<value>cn/edu/zucc/shop/product/vo/Product.hbm.xml</value>
 				<value>cn/edu/zucc/shop/categorysecond/vo/CategorySecond.hbm.xml</value>
+				<value>cn/edu/zucc/shop/order/vo/Order.hbm.xml</value>
+				<value>cn/edu/zucc/shop/order/vo/OrderItem.hbm.xml</value>
 			</list>
 		</property>
 
@@ -96,6 +98,13 @@
 		<property name="productService" ref="productService" />
 	</bean>
 
+	<!-- 订单模块的action -->
+	<bean id="orderAction" class="cn.edu.zucc.shop.order.action.OrderAction"
+		scope="prototype">
+		<!-- 注入Service -->
+		<property name="orderService" ref="orderService" />
+	</bean>
+
 	<!-- Service的配置 ======================== -->
 	<bean id="userService" class="cn.edu.zucc.shop.user.service.UserService">
 		<property name="userDao" ref="userDao" />
@@ -109,6 +118,10 @@
 		<property name="productDao" ref="productDao" />
 	</bean>
 
+	<bean id="orderService" class="cn.edu.zucc.shop.order.service.OrderService">
+		<property name="orderDao" ref="orderDao" />
+	</bean>
+
 	<!-- Dao的配置 =========================== -->
 	<bean id="userDao" class="cn.edu.zucc.shop.user.dao.UserDao">
 		<property name="sessionFactory" ref="sessionFactory" />
@@ -119,6 +132,10 @@
 	</bean>
 
 	<bean id="productDao" class="cn.edu.zucc.shop.product.dao.ProductDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="orderDao" class="cn.edu.zucc.shop.order.dao.OrderDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 </beans>
