@@ -104,7 +104,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		if (existUser == null) {
 			// 登陆失败
 			this.addActionError("登陆失败，用户名或密码错误");
-			return LOGIN;
+			return "loginagain";
 		} else {
 			// 登陆成功
 			// 将用户的信息存到session中

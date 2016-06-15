@@ -59,7 +59,7 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 				.getAttribute("existUser");
 		if (existUser == null) {
 			this.addActionError("Ç×!Äú»¹Ã»ÓÐµÇÂ¼!");
-			return "login";
+			return "loginOrder";
 		}
 		order.setUser(existUser);
 		
