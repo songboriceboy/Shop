@@ -92,5 +92,48 @@ public class ProductService {
 		return pageBean;
 	}
 
+	//业务层查询商品，分页
+	public PageBean<Product> findByPage(Integer page) {
+		// TODO Auto-generated method stub
+		PageBean<Product> pageBean = new PageBean<Product>();
+		pageBean.setPage(page);
+		int limit = 10;
+		pageBean.setLimit(limit);
+		
+		int totalCount = 0;
+		totalCount = productDao.findCount();
+		pageBean.setTotalCount(totalCount);
+		//设置总页数
+		int totalPage = 0;
+		if(totalCount % limit == 0){
+			totalPage = totalCount / limit;
+		} else {
+			totalPage = totalCount / limit + 1;
+		}
+		pageBean.setTotalPage(totalPage);
+		
+		//每页显示数据的集合
+		int begin = (page -1 ) * limit;
+		List<Product> list = productDao.findByPage(begin,limit);
+		pageBean.setList(list);
+		return pageBean;
+	}
+
+	//保存商品
+	public void save(Product product) {
+		// TODO Auto-generated method stub
+		productDao.save(product);
+	}
+
+	public void delete(Product product) {
+		// TODO Auto-generated method stub
+		productDao.delete(product);
+	}
+
+	public void update(Product product) {
+		// TODO Auto-generated method stub
+		productDao.update(product);
+	}
+
 
 }

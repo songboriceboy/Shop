@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.edu.zucc.shop.order.vo.Order;
+import cn.edu.zucc.shop.utils.PageBean;
 import cn.edu.zucc.shop.utils.PageHibernateCallback;
 
 /*
@@ -48,5 +49,31 @@ public class OrderDao extends HibernateDaoSupport{
 		// TODO Auto-generated method stub
 		this.getHibernateTemplate().update(currOrder);
 	}
+
+	//统计订单个数
+	public int findByCount() {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from Order";
+		List<Long> list = this.getHibernateTemplate().find(hql);
+		
+		if(list != null && list.size() > 0) {
+			return list.get(0).intValue();
+		} 
+		return 0;
+	}
+
+	//查询当前页的
+	public  List<Order> findByPage(int begin, int limit) {
+		// TODO Auto-generated method stub
+		String hql = "from Order o order by o.oid desc";
+		List<Order> list = this.getHibernateTemplate().execute(new PageHibernateCallback<Order>(hql, null, begin, limit));
+		if(list != null && list.size() > 0) {
+			return list;
+		}
+		
+		return null;
+	}
+
+	
 	
 }

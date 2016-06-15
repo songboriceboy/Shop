@@ -45,7 +45,7 @@ public class ProductDao extends HibernateDaoSupport {
 		DetachedCriteria criteria = DetachedCriteria.forClass(Product.class);
 
 		// 查询最新商品，按日期的倒序来排序
-		criteria.addOrder(Order.desc("pdate"));
+		criteria.addOrder(Order.desc("pid"));
 
 		List<Product> list = this.getHibernateTemplate().findByCriteria(
 				criteria, 0, 10);
@@ -88,7 +88,7 @@ public class ProductDao extends HibernateDaoSupport {
 	public int findCountCsid(Integer csid) {
 		// TODO Auto-generated method stub
 		String hql = "select count(*) from Product p where p.categorySecond.csid = ?";
-		List<Long> list = this.getHibernateTemplate().find(hql,csid);
+		List<Long> list = this.getHibernateTemplate().find(hql, csid);
 		if (list != null && list.size() > 0) {
 			return list.get(0).intValue();
 		}
@@ -107,6 +107,42 @@ public class ProductDao extends HibernateDaoSupport {
 		}
 
 		return null;
+	}
+
+	// 统计商品个数
+	public int findCount() {
+		String hql = "select count(*) from Product";
+		List<Long> list = this.getHibernateTemplate().find(hql);
+		if (list != null && list.size() > 0) {
+			return list.get(0).intValue();
+		}
+		return 0;
+	}
+
+	// 带有分页的查询商品的方法
+	public List<Product> findByPage(int begin, int limit) {
+		String hql = "from Product order by pid desc";
+		List<Product> list = this.getHibernateTemplate().execute(
+				new PageHibernateCallback<Product>(hql, null, begin, limit));
+
+		if (list != null && list.size() > 0) {
+			return list;
+		}
+		return null;
+	}
+
+	public void save(Product product) {
+		// TODO Auto-generated method stub
+		this.getHibernateTemplate().save(product);
+	}
+
+	public void delete(Product product) {
+		this.getHibernateTemplate().delete(product);
+	}
+
+	public void update(Product product) {
+		// TODO Auto-generated method stub
+		this.getHibernateTemplate().update(product);
 	}
 
 }

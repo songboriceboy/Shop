@@ -70,5 +70,11 @@ public class CategorySecondService {
 		categorySecondDao.update(categorySecond);
 	}
 
+	//查询所有二级分类的方法
+	public List<CategorySecond> findAll() {
+		// TODO Auto-generated method stub
+		return categorySecondDao.findAll();
+	}
+
 	
 }
