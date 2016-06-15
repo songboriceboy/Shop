@@ -22,8 +22,6 @@ public class CategoryService {
 
 	//业务层查询所有一级分类的方法的实现
 	public List<Category> findAll() {
-		// TODO Auto-generated method stub
-		
 		return categoryDao.findAll();
 	}
 
@@ -37,9 +35,16 @@ public class CategoryService {
 		return categoryDao.findByCid(cid);
 	}
 
+	//删除一级分类
 	public void delete(Category category) {
 		// TODO Auto-generated method stub
 		categoryDao.delete(category);
+	}
+	
+	//修改一级分类
+	public void update(Category category) {
+		// TODO Auto-generated method stub
+		categoryDao.update(category);
 	}
 
 }

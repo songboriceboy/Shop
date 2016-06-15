@@ -36,6 +36,10 @@ public class CategoryDao extends HibernateDaoSupport {
 		this.getHibernateTemplate().delete(category);
 	}
 
+	public void update(Category category) {
+		this.getHibernateTemplate().update(category);
+	}
+
 	
 
 }

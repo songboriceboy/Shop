@@ -5,15 +5,21 @@
 
 <struts>
 	<!-- 开发模式 -->
-	<constant name="structs.devMode" value="false"></constant>
+    <constant name="struts.devMode" value="false" />
 
 	<package name="shop" extends="struts-default" namespace="/">
-
+		<!-- 配置自定义拦截器 -->
+		<interceptors>
+			<interceptor name="privilegeInterceptor" class="cn.itcast.shop.interceptor.PrivilegeInterceptor"/>
+			
+		</interceptors>
+	
 		<global-results>
 			<result name="msg">/WEB-INF/jsp/msg.jsp</result>
-			<result name="login">/WEB-INF/jsp/login.jsp</result>
+			<result name="login">/admin/index.jsp</result>
 		</global-results>
-
+		
+	
 		<!-- 配置首页访问的Action -->
 		<action name="index" class="indexAction">
 			<result name="index">/WEB-INF/jsp/index.jsp</result>
@@ -70,6 +76,19 @@
 			<result name="findAll">/admin/category/list.jsp</result>
 			<result name="saveSuccess" type="redirectAction">adminCategory_findAll.action</result>
 			<result name="deleteSuccess" type="redirectAction">adminCategory_findAll.action</result>
+			<result name="updateSuccess" type="redirectAction">adminCategory_findAll.action</result>
+			<result name="editSuccess">/admin/category/edit.jsp</result>
 		</action>
+		
+		<!-- 后台二级分类管理的action -->
+		<action name="adminCategorySecond_*" class="adminCategorySecondAction" method="{1}">
+			<result name="findAll">/admin/categorysecond/list.jsp</result>
+			<result name="addPageSuccess">/admin/categorysecond/add.jsp</result>
+			<result name="saveSuccess" type="redirectAction">adminCategorySecond_findAll.action?page=1</result>
+			<result name="deleteSuccess" type="redirectAction">adminCategorySecond_findAll.action?page=1</result>
+			<result name="editSuccess">/admin/categorysecond/edit.jsp</result>
+			<result name="updateSuccess" type="redirectAction">adminCategorySecond_findAll.action?page=1</result>
+		</action>
+		
 	</package>
 </struts>

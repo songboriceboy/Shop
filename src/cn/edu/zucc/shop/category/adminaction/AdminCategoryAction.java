@@ -56,6 +56,18 @@ public class AdminCategoryAction extends ActionSupport implements
 		categoryService.delete(category);
 		return "deleteSuccess";
 	}
-
 	
+	//编辑一级分类
+	public String edit(){
+		category = categoryService.findByCid(category.getCid());
+		return "editSuccess";
+	}
+
+	//后台修改一级分类
+	public String update(){
+		categoryService.update(category);
+		
+		return "updateSuccess";
+		
+	}
 }
